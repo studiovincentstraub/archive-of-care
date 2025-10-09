@@ -1,0 +1,10 @@
+/* custom.css — overrides link colors */
+a, a:visited {
+  color: #007bff; /* blue links */
+  text-decoration: none;
+}
+
+a:hover, a:focus {
+  color: #0056b3; /* darker blue hover */
+  text-decoration: underline;
+}
