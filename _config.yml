@@ -11,7 +11,7 @@ github_username:  ""
 deviantart_username: ""
 flickr_username: ""
 discus_shortname: ""
-share: true
+share: false
 
 # Owner/author information
 owner:
@@ -29,7 +29,6 @@ comments :
 # Internal nav
 nav:
   - ABOUT: "https://vincejstraub.github.io/archive-of-care/about/"
-  - GALLERY: "https://vincejstraub.github.io/archive-of-care/gallery/"
 # All translation keys
 translations:
  # 404.html
