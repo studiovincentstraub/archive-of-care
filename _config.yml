@@ -29,6 +29,8 @@ comments :
 # Internal nav
 nav:
   - ABOUT: "https://vincejstraub.github.io/archive-of-care/about/"
+  - UPDATES: "https://vincejstraub.github.io/archive-of-care/updates/"
+
 # All translation keys
 translations:
  # 404.html

@@ -12,6 +12,16 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right" style="margin-right:1em; text-shadow: -.025em -.025em 0 rgba(0, 133, 161, 0.75), .025em -.025em 0 rgba(0, 133, 161, 0.75), -.025em .025em 0 rgba(0, 133, 161, 0.75), .025em .025em 0 rgba(0, 133, 161, 0.75);">
+
+        <!-- Home button (first item) -->
+        {% assign is_home = page.url == "/" or page.url == "/index.html" or page.url == "" %}
+        {% if is_home %}
+          <li class="active"><a href="{{ site.baseurl }}/">Home</a></li>
+        {% else %}
+          <li><a href="{{ site.baseurl }}/">Home</a></li>
+        {% endif %}
+
+        <!-- Existing nav items (About, etc.) -->
         {% for nav_hash in site.nav %}
           {% for nav_item in nav_hash %}
             {% assign lowercase_nav_item = nav_item[0] | downcase %}
@@ -22,6 +32,7 @@
             {% endif %}
           {% endfor %}
         {% endfor %}
+
       </ul>
     </div>
     <!-- /.navbar-collapse -->
