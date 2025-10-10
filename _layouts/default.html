@@ -18,6 +18,59 @@
 
    {% include Scroll_to_Top.html %}  
 
+<!-- ====== Mobile nav helper JS (auto-close collapse & improve touch) ====== -->
+<script>
+/* If jQuery + Bootstrap JS are present, this uses Bootstrap's collapse('hide').
+   Otherwise a vanilla fallback attempts to remove the open classes. */
+(function () {
+  // jQuery + Bootstrap available path
+  if (window.jQuery && typeof jQuery.fn.collapse === 'function') {
+    (function($){
+      // auto-hide collapsed navbar when clicking links (improves UX on mobile)
+      $(document).on('click', '.navbar-collapse.in a[href^="#"], .navbar-collapse.show a[href^="#"]', function(){
+        $('.navbar-collapse').collapse('hide');
+      });
+
+      // also hide when any internal nav link clicked (not just # anchors)
+      $(document).on('click', '.navbar-collapse.in a, .navbar-collapse.show a', function(){
+        var href = $(this).attr('href') || '';
+        // allow external links/navigation to proceed
+        if (href && !href.startsWith('#') && !href.startsWith(window.location.origin) && !href.startsWith('{{ site.baseurl }}/')) {
+          return;
+        }
+        $('.navbar-collapse').collapse('hide');
+      });
+    })(jQuery);
+    return;
+  }
+
+  // Vanilla JS fallback
+  (function () {
+    document.addEventListener('click', function (e) {
+      var link = e.target.closest('.navbar-collapse a, .navbar-collapse .nav li a, .navbar-toggle');
+      if (!link) return;
+      var href = link.getAttribute('href') || '';
+      // allow external navigation
+      if (href && !href.startsWith('#') && !href.startsWith(window.location.origin) && !href.startsWith('{{ site.baseurl }}/')) {
+        return;
+      }
+
+      var collapse = document.querySelector('.navbar-collapse');
+      if (!collapse) return;
+
+      // remove Bootstrap's "in"/"show" classes and restore collapse height
+      collapse.classList.remove('in');
+      collapse.classList.remove('show');
+      collapse.style.height = null;
+
+      // update toggler aria
+      var toggler = document.querySelector('.navbar-toggle, .navbar-toggler');
+      if (toggler) toggler.setAttribute('aria-expanded', 'false');
+    }, {passive: true});
+  })();
+})();
+</script>
+
 </body>
 
 </html>

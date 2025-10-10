@@ -1,3 +1,4 @@
+/* ---------- BEGIN ORIGINAL main.css ---------- */
 body {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 20px;
@@ -206,48 +207,6 @@ hr.small {
   color: white;
 }
 @media only screen and (min-width: 768px) {
-  .intro-header .post-heading h1 {
-    font-size: 55px;
-  }
-  .intro-header .post-heading .subheading {
-    font-size: 30px;
-    text-shadow: 1px 1px 4px #000;
-  }
-}
-.post-preview > a {
-  color: #f5f5f5;
-}
-.post-preview > a:hover,
-.post-preview > a:focus {
-  text-decoration: none;
-  color: #0085a1;
-}
-.post-preview > a > .post-title {
-  font-size: 30px;
-  margin-top: 30px;
-  margin-bottom: 10px;
-}
-.post-preview > a > .post-subtitle {
-  margin: 0;
-  font-weight: 300;
-  margin-bottom: 10px;
-}
-.post-preview > .post-meta {
-  color: #808080;
-  font-size: 18px;
-  font-style: italic;
-  margin-top: 0;
-}
-.post-preview > .post-meta > a {
-  text-decoration: none;
-  color: #404040;
-}
-.post-preview > .post-meta > a:hover,
-.post-preview > .post-meta > a:focus {
-  color: #0085a1;
-  text-decoration: underline;
-}
-@media only screen and (min-width: 768px) {
   .post-preview > a > .post-title {
     font-size: 36px;
   }
@@ -405,21 +364,24 @@ body {
 .fa-stack-2x {
  color: black;
 }
+/* ---------- END ORIGINAL main.css ---------- */
 
-/* ========= Mobile-friendly hero title ========== */
-/* Replace the fixed sizing so the hero <h1> scales on small screens */
+
+/* ========== BEGIN APPENDED MOBILE & NAV FIXES ========== */
+
+/* Responsive hero/title: allow h1 to scale and wrap on small screens */
 .intro-header .site-heading h1,
 .intro-header .page-heading h1 {
-  font-size: clamp(26px, 7.5vw, 80px); /* fluid sizing: min 26px, preferred 7.5vw, max 80px */
+  font-size: clamp(26px, 7.5vw, 80px); /* fluid sizing */
   line-height: 1.06;
   margin: 0;
-  white-space: normal;   /* allow wrapping */
+  white-space: normal;
   word-break: break-word;
   overflow-wrap: break-word;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Slightly tighter mobile rules */
+/* Slightly tighter on very small screens */
 @media (max-width: 420px) {
   .intro-header .site-heading h1,
   .intro-header .page-heading h1 {
@@ -427,43 +389,62 @@ body {
   }
 }
 
-/* ========= Navbar stacking & touch behavior ========== */
-/* Ensure the navbar sits above hero and receives touch events */
+/* ---------- Navbar stacking & pointer fixes (mobile) ---------- */
+/* Ensure the navbar is on top of hero/overlay content */
 .navbar-custom {
   z-index: 9999 !important;
   pointer-events: auto !important;
 }
 
-/* Ensure every anchor inside nav can be touched */
-.navbar-custom a,
-.navbar-custom .nav li a {
-  pointer-events: auto !important;
-  -webkit-tap-highlight-color: rgba(0,0,0,0); /* remove highlight on tap if desired */
+/* Make the collapsed menu appear above overlays when opened */
+.navbar-custom .navbar-collapse {
+  position: relative;
+  z-index: 10000;
+  pointer-events: auto;
 }
 
-/* If your hero uses pseudo-elements or an overlay, make them non-blocking (common pattern) */
+/* The open state (Bootstrap adds 'in' or 'show' depending on version) */
+.navbar-custom .navbar-collapse.in,
+.navbar-custom .navbar-collapse.show {
+  z-index: 10000;
+  pointer-events: auto;
+}
+
+/* Ensure the burger button is always tappable */
+.navbar-toggle {
+  z-index: 10001 !important;
+  pointer-events: auto !important;
+}
+
+/* Make decorative hero overlays non-blocking */
 .intro-header::before,
 .intro-header::after,
 .intro-header .overlay,
 .page-header::before,
 .page-header::after,
-.hero-overlay {
-  pointer-events: none !important; /* decorative overlays should not intercept touches */
+.hero-overlay,
+.intro-header .site-heading::before,
+.intro-header .site-heading::after {
+  pointer-events: none !important;
 }
 
-/* If you intentionally need interactive elements inside the hero (buttons/links),
-   make them clickable again by explicitly enabling pointer-events for them */
+/* If you intentionally have interactive items in the hero, explicitly enable them */
 .intro-header a,
 .intro-header button,
 .intro-header .btn {
   pointer-events: auto !important;
 }
 
-/* ========= small CSS cleanups / fixes ========= */
-/* Fix vendor-prefixed tap highlight property (was missing leading hyphen) */
+/* Prevent hero from creating unintended higher stacking contexts */
+.intro-header,
+.intro-header * {
+  z-index: 0;
+}
+
+/* Fix vendor-prefixed tap highlight property and typo corrections */
 body {
   -webkit-tap-highlight-color: #0085a1;
 }
+a { text-decoration: none; }
 
-/* small typos in original CSS (not strictly necessary but helpful) */
-a { text-decoration: none; } /* corrects text-decorarion typo earlier */
+/* ========== END APPENDED MOBILE & NAV FIXES ========== */
