@@ -448,3 +448,41 @@ body {
 a { text-decoration: none; }
 
 /* ========== END APPENDED MOBILE & NAV FIXES ========== */
+/* ======= SIMPLE STRONG OVERRIDE (paste into css/custom.css) ======= */
+
+/* force hero title to be fluid, wrapable and never overflow on mobile */
+.intro-header .site-heading h1,
+.intro-header .page-heading h1 {
+  font-size: clamp(18px, 6.2vw, 44px) !important; /* small on phones, scales on larger */
+  line-height: 1.06 !important;
+  margin: 0 !important;
+  max-width: 100% !important;
+  white-space: normal !important;      /* allow wrapping */
+  word-break: break-word !important;   /* break long words */
+  overflow-wrap: anywhere !important;
+  display: block !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+/* reduce hero padding on small screens so title has room */
+@media (max-width: 480px) {
+  .intro-header .site-heading,
+  .intro-header .page-heading {
+    padding-top: 36px !important;
+    padding-bottom: 18px !important;
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+
+  .intro-header .site-heading h1,
+  .intro-header .page-heading h1 {
+    font-size: clamp(16px, 9.5vw, 32px) !important;
+    line-height: 1.08 !important;
+  }
+}
+
+/* Defensive: prevent any horizontal overflow from the hero */
+.intro-header, .intro-header * {
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
