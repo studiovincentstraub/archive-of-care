@@ -1,3 +1,6 @@
+h1, h2, h3 {
+  font-family: 'Montserrat', Arial, sans-serif;
+}
 @media (max-width: 600px) {
   h1, .site-title {
     max-width: 90vw;
