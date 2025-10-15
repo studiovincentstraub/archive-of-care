@@ -1,3 +1,11 @@
+@media (max-width: 600px) {
+  h1, .site-title {
+    max-width: 90vw;
+    white-space: normal;
+    word-break: break-word;
+    font-size: 1.5rem;
+  }
+}
 /* custom.css — overrides link colors */
 a, a:visited {
   color: #007bff; /* blue links */
