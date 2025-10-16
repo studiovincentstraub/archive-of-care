@@ -1,3 +1,4 @@
+main-title: "Prototyping a Plural Archive of Care"
 ---
 layout: home
 active: home
@@ -26,6 +27,24 @@ images:
 
 	<!-- Modernizr -->
   	<script src="{{ site.baseurl }}/js/modernizr.js"></script>
+<!-- Small page-level CSS to ensure the large title wraps on narrow viewports -->
+<style>
+	/* allow the homepage 'big' title to wrap and scale on mobile */
+	h2.big {
+		white-space: normal !important;
+		word-break: break-word !important;
+		overflow-wrap: break-word !important;
+		font-size: clamp(28px, 8vw, 60px);
+		line-height: 1.05;
+		margin: 0;
+	}
+	@media (max-width: 420px) {
+		h2.big { font-size: clamp(20px, 9.5vw, 34px); }
+	}
+</style>
+
+<!-- Modernizr -->
+		<script src="{{ site.baseurl }}/js/modernizr.js"></script>
 </head>
 
 <body class="fullscreen">
